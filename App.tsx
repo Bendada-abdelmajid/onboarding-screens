@@ -1,11 +1,31 @@
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import React, { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import Onboarding from './components/Onboarding';
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+  const [loaded, error] = useFonts({
+    'Anybody-Light': require('./assets/fonts/Anybody-Light.ttf'),
+    'Anybody-Medium': require('./assets/fonts/Anybody-SemiBold.ttf'),
+    'Anybody-Regular': require('./assets/fonts/Anybody-Regular.ttf'),
+  });
+
+  useEffect(() => {
+    if (loaded || error) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded, error]);
+
+  if (!loaded && !error) {
+    return null;
+  }
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Onboarding />
+      <StatusBar style="auto" hidden />
     </View>
   );
 }
