@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import Onboarding from './components/Onboarding';
+import OnboardingTwo from './components/MaskOnboarding';
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
@@ -24,7 +25,7 @@ export default function App() {
   }
   return (
     <View style={styles.container}>
-      <Onboarding />
+      <OnboardingTwo />
       <StatusBar style="auto" hidden />
     </View>
   );
@@ -33,8 +34,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+
   },
 });
